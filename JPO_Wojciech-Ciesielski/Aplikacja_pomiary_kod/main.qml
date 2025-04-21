@@ -1180,7 +1180,7 @@ Window {
                                         }
 
                                         onTextChanged: {
-                                            // Prosta walidacja - zachowaj ostatnią poprawną wartość
+                                            
                                             if (/^\d{4}-\d{2}-\d{2}$/.test(text) || text === "") {
                                                 lastValidText = text
                                             } else if (text.length > lastValidText.length) {
@@ -1211,7 +1211,7 @@ Window {
                                         }
 
                                         onTextChanged: {
-                                            // Prosta walidacja - zachowaj ostatnią poprawną wartość
+                                           
                                             if (/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(text) || text === "") {
                                                 lastValidText = text
                                             } else if (text.length > lastValidText.length) {
@@ -1254,7 +1254,7 @@ Window {
                                         }
 
                                         onTextChanged: {
-                                            // Prosta walidacja - zachowaj ostatnią poprawną wartość
+                                          
                                             if (/^\d{4}-\d{2}-\d{2}$/.test(text) || text === "") {
                                                 lastValidText = text
                                             } else if (text.length > lastValidText.length) {
@@ -1285,7 +1285,7 @@ Window {
                                         }
 
                                         onTextChanged: {
-                                            // Prosta walidacja - zachowaj ostatnią poprawną wartość
+                                           
                                             if (/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(text) || text === "") {
                                                 lastValidText = text
                                             } else if (text.length > lastValidText.length) {
