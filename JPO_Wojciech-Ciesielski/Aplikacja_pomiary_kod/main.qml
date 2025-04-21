@@ -1641,7 +1641,7 @@ Window {
                         border.color: borderColor
                         border.width: 1
 
-                        // Modyfikacja Canvas dla obsługi filtrowania dat - zmodyfikuj istniejący Canvas
+                        // Modyfikacja Canvas dla obsługi filtrowania dat
 
                         Canvas {
                             id: chartCanvas
