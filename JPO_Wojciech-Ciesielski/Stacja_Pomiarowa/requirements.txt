@@ -1,0 +1,34 @@
+# Wymagania dla aplikacji MonitoringPowietrza.exe
+
+## Wymagania systemowe
+- System operacyjny: Windows 7 SP1, Windows 8.1 lub Windows 10/11
+- Co najmniej 2 GB RAM
+- Około 50 MB wolnego miejsca na dysku
+- Rozdzielczość ekranu: minimum 1024x768
+- Połączenie internetowe (do pobierania danych, później możliwa praca offline)
+
+## Wymagane komponenty
+- Microsoft Visual C++ Redistributable 2015-2019 (x86 lub x64, zależnie od wersji aplikacji)
+  * Zwykle już zainstalowany na większości systemów Windows
+  * W razie potrzeby można pobrać ze strony Microsoft: https://support.microsoft.com/pl-pl/help/2977003/the-latest-supported-visual-c-downloads
+
+## Uprawnienia
+- Aplikacja wymaga podstawowych uprawnień do:
+  * Dostępu do internetu
+  * Tworzenia i odczytu plików w katalogu danych aplikacji użytkownika
+  * Nie wymaga uprawnień administratora
+
+## Kompatybilność
+- Windows 7 SP1 (z zainstalowanymi aktualizacjami)
+- Windows 8.1
+- Windows 10 (wszystkie wersje)
+- Windows 11
+
+## Dodatkowe informacje
+- Aplikacja jest samodzielna (portable) - nie wymaga instalacji
+- Wszystkie wymagane biblioteki DLL są dostarczane razem z aplikacją w tym samym folderze
+- Brak zależności od innych zainstalowanych aplikacji
+
+## Znane problemy
+- Na starszych systemach Windows (Windows 7) pierwsze uruchomienie może trwać nieco dłużej
+- Jeśli używasz systemów innych niż Windows, potrzebna będzie wersja skompilowana dla danego systemu operacyjnego
