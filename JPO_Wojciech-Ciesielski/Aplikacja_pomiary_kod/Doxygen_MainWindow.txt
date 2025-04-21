@@ -1,0 +1,691 @@
+# Dokumentacja Doxygen dla klasy MainWindow
+
+## Opis klasy
+/**
+ * @class MainWindow
+ * @brief Klasa odpowiedzialna za zarządzanie głównym oknem aplikacji monitorującej jakość powietrza
+ * 
+ * MainWindow obsługuje komunikację z API GIOS (Główny Inspektorat Ochrony Środowiska),
+ * pobieranie danych o stacjach pomiarowych, czujnikach, parametrach jakości powietrza,
+ * oraz zarządzanie lokalną pamięcią podręczną dla tych danych.
+ */
+
+## Konstruktor
+/**
+ * @brief Konstruktor klasy MainWindow
+ * @param parent Obiekt rodzica dla QObject
+ */
+MainWindow::MainWindow(QObject *parent) || Linia 21
+
+## Właściwości
+
+### Dotyczące zarządzania danymi
+/**
+ * @property responseData
+ * @brief Zawiera dane odpowiedzi API
+ */
+
+/**
+ * @property isLoading
+ * @brief Flaga informująca czy trwa ładowanie danych
+ */
+
+/**
+ * @property hasError
+ * @brief Flaga informująca o wystąpieniu błędu
+ */
+
+/**
+ * @property errorMessage
+ * @brief Komunikat o błędzie
+ */
+
+### Dotyczące stacji pomiarowych
+/**
+ * @property stationsData
+ * @brief Dane o stacjach pomiarowych
+ */
+
+/**
+ * @property isLoadingStations
+ * @brief Flaga informująca czy trwa ładowanie danych o stacjach
+ */
+
+/**
+ * @property hasStationsError
+ * @brief Flaga informująca o błędzie podczas pobierania danych o stacjach
+ */
+
+/**
+ * @property stationsErrorMessage
+ * @brief Komunikat o błędzie dla stacji pomiarowych
+ */
+
+### Dotyczące czujników
+/**
+ * @property sensorsData
+ * @brief Dane o czujnikach stacji
+ */
+
+/**
+ * @property isLoadingSensors
+ * @brief Flaga informująca czy trwa ładowanie danych o czujnikach
+ */
+
+/**
+ * @property hasSensorsError
+ * @brief Flaga informująca o błędzie podczas pobierania danych o czujnikach
+ */
+
+/**
+ * @property sensorsErrorMessage
+ * @brief Komunikat o błędzie dla czujników
+ */
+
+### Dotyczące wykresu
+/**
+ * @property chartData
+ * @brief Dane dla wykresu
+ */
+
+/**
+ * @property parameterName
+ * @brief Nazwa parametru dla wykresu
+ */
+
+/**
+ * @property parameterFormula
+ * @brief Wzór chemiczny parametru dla wykresu
+ */
+
+/**
+ * @property minValue
+ * @brief Minimalna wartość na wykresie
+ */
+
+/**
+ * @property maxValue
+ * @brief Maksymalna wartość na wykresie
+ */
+
+/**
+ * @property hasChartData
+ * @brief Flaga informująca czy są dostępne dane dla wykresu
+ */
+
+### Dotyczące indeksu jakości powietrza
+/**
+ * @property aqIndexData
+ * @brief Dane indeksu jakości powietrza
+ */
+
+/**
+ * @property isLoadingAqIndex
+ * @brief Flaga informująca czy trwa ładowanie danych indeksu jakości powietrza
+ */
+
+/**
+ * @property hasAqIndexError
+ * @brief Flaga informująca o błędzie podczas pobierania indeksu jakości powietrza
+ */
+
+/**
+ * @property aqIndexErrorMessage
+ * @brief Komunikat o błędzie dla indeksu jakości powietrza
+ */
+
+### Dotyczące pamięci podręcznej
+/**
+ * @property isUsingCachedData
+ * @brief Flaga informująca czy używane są dane z pamięci podręcznej
+ */
+
+/**
+ * @property cachedDataMessage
+ * @brief Komunikat o używaniu danych z pamięci podręcznej
+ */
+
+/**
+ * @property allowSaveToFile
+ * @brief Flaga informująca czy dozwolone jest zapisywanie danych do plików
+ */
+
+/**
+ * @property cacheFilesIds
+ * @brief Lista identyfikatorów plików cache
+ */
+
+/**
+ * @property cacheFileContent
+ * @brief Zawartość pliku cache
+ */
+
+/**
+ * @property cacheStatusMessage
+ * @brief Komunikat statusu dla operacji na cache
+ */
+
+## Metody
+
+### Zarządzanie pamięcią podręczną
+/**
+ * @brief Sprawdza czy zapisywanie do pliku jest dozwolone
+ * @return Wartość informująca czy zapisywanie jest dozwolone
+ */
+bool MainWindow::allowSaveToFile() const || Linia 60
+
+/**
+ * @brief Ustawia flagę zezwalającą na zapisywanie do pliku
+ * @param allow Flaga określająca czy zapisywanie do pliku jest dozwolone
+ */
+void MainWindow::setAllowSaveToFile(bool allow) || Linia 65
+
+/**
+ * @brief Zapewnia istnienie katalogu danych i zwraca jego ścieżkę
+ * @return Ścieżka do katalogu danych
+ */
+QString MainWindow::ensureDataDirectoryExists() || Linia 74
+
+/**
+ * @brief Zapisuje dane stacji do pliku
+ * @param jsonData Dane w formacie JSON do zapisania
+ */
+void MainWindow::saveStationsDataToFile(const QJsonDocument &jsonData) || Linia 85
+
+/**
+ * @brief Wczytuje dane stacji z pliku
+ * @return Dokument JSON z danymi stacji lub pusty dokument w przypadku błędu
+ */
+QJsonDocument MainWindow::loadStationsDataFromFile() || Linia 103
+
+/**
+ * @brief Zapisuje dane czujników stacji do pliku
+ * @param stationId ID stacji
+ * @param jsonData Dane w formacie JSON do zapisania
+ */
+void MainWindow::saveSensorsDataToFile(const QString &stationId, const QJsonDocument &jsonData) || Linia 123
+
+/**
+ * @brief Wczytuje dane czujników stacji z pliku
+ * @param stationId ID stacji
+ * @return Dokument JSON z danymi czujników lub pusty dokument w przypadku błędu
+ */
+QJsonDocument MainWindow::loadSensorsDataFromFile(const QString &stationId) || Linia 142
+
+/**
+ * @brief Zapisuje dane czujnika do pliku
+ * @param sensorId ID czujnika
+ * @param jsonData Dane w formacie JSON do zapisania
+ */
+void MainWindow::saveSensorDataToFile(const QString &sensorId, const QJsonDocument &jsonData) || Linia 161
+
+/**
+ * @brief Wczytuje dane czujnika z pliku
+ * @param sensorId ID czujnika
+ * @return Dokument JSON z danymi czujnika lub pusty dokument w przypadku błędu
+ */
+QJsonDocument MainWindow::loadSensorDataFromFile(const QString &sensorId) || Linia 180
+
+/**
+ * @brief Zapisuje dane indeksu jakości powietrza do pliku
+ * @param stationId ID stacji
+ * @param jsonData Dane w formacie JSON do zapisania
+ */
+void MainWindow::saveAqIndexDataToFile(const QString &stationId, const QJsonDocument &jsonData) || Linia 199
+
+/**
+ * @brief Wczytuje dane indeksu jakości powietrza z pliku
+ * @param stationId ID stacji
+ * @return Dokument JSON z danymi indeksu jakości powietrza lub pusty dokument w przypadku błędu
+ */
+QJsonDocument MainWindow::loadAqIndexDataFromFile(const QString &stationId) || Linia 218
+
+/**
+ * @brief Ustawia listę identyfikatorów plików cache
+ * @param ids Lista identyfikatorów
+ */
+void MainWindow::setCacheFilesIds(const QStringList &ids) || Linia 237
+
+/**
+ * @brief Ustawia zawartość pliku cache
+ * @param content Zawartość pliku
+ */
+void MainWindow::setCacheFileContent(const QString &content) || Linia 244
+
+/**
+ * @brief Ustawia komunikat statusu operacji na cache
+ * @param message Treść komunikatu
+ */
+void MainWindow::setCacheStatusMessage(const QString &message) || Linia 251
+
+/**
+ * @brief Ładuje listę plików cache dla określonego typu danych
+ * @param dataTypeIndex Indeks typu danych (0: stacje, 1: czujniki stacji, 2: dane czujnika, 3: indeks jakości powietrza)
+ */
+void MainWindow::loadCacheFilesList(int dataTypeIndex) || Linia 259
+
+/**
+ * @brief Ładuje zawartość pliku cache
+ * @param dataTypeIndex Indeks typu danych
+ * @param fileId Identyfikator pliku
+ */
+void MainWindow::loadCacheFileContent(int dataTypeIndex, const QString &fileId) || Linia 304
+
+/**
+ * @brief Formatuje dane JSON do czytelnego wyświetlenia
+ * @param jsonDoc Dokument JSON do sformatowania
+ * @return Sformatowany tekst JSON
+ */
+QString MainWindow::formatJsonForDisplay(const QJsonDocument &jsonDoc) || Linia 365
+
+### Gettery
+
+/**
+ * @brief Zwraca dane odpowiedzi
+ * @return Dane odpowiedzi jako QString
+ */
+QString MainWindow::responseData() const || Linia 389
+
+/**
+ * @brief Sprawdza czy trwa ładowanie danych
+ * @return Wartość flagi ładowania
+ */
+bool MainWindow::isLoading() const || Linia 394
+
+/**
+ * @brief Sprawdza czy wystąpił błąd
+ * @return Wartość flagi błędu
+ */
+bool MainWindow::hasError() const || Linia 399
+
+/**
+ * @brief Zwraca komunikat o błędzie
+ * @return Treść komunikatu o błędzie
+ */
+QString MainWindow::errorMessage() const || Linia 404
+
+/**
+ * @brief Zwraca dane stacji
+ * @return Dane stacji jako QString
+ */
+QString MainWindow::stationsData() const || Linia 410
+
+/**
+ * @brief Sprawdza czy trwa ładowanie danych stacji
+ * @return Wartość flagi ładowania stacji
+ */
+bool MainWindow::isLoadingStations() const || Linia 415
+
+/**
+ * @brief Sprawdza czy wystąpił błąd podczas ładowania stacji
+ * @return Wartość flagi błędu stacji
+ */
+bool MainWindow::hasStationsError() const || Linia 420
+
+/**
+ * @brief Zwraca komunikat o błędzie stacji
+ * @return Treść komunikatu o błędzie stacji
+ */
+QString MainWindow::stationsErrorMessage() const || Linia 425
+
+/**
+ * @brief Zwraca dane czujników
+ * @return Dane czujników jako QString
+ */
+QString MainWindow::sensorsData() const || Linia 431
+
+/**
+ * @brief Sprawdza czy trwa ładowanie danych czujników
+ * @return Wartość flagi ładowania czujników
+ */
+bool MainWindow::isLoadingSensors() const || Linia 436
+
+/**
+ * @brief Sprawdza czy wystąpił błąd podczas ładowania czujników
+ * @return Wartość flagi błędu czujników
+ */
+bool MainWindow::hasSensorsError() const || Linia 441
+
+/**
+ * @brief Zwraca komunikat o błędzie czujników
+ * @return Treść komunikatu o błędzie czujników
+ */
+QString MainWindow::sensorsErrorMessage() const || Linia 446
+
+/**
+ * @brief Zwraca dane dla wykresu
+ * @return Lista danych dla wykresu
+ */
+QVariantList MainWindow::chartData() const || Linia 452
+
+/**
+ * @brief Zwraca nazwę parametru
+ * @return Nazwa parametru
+ */
+QString MainWindow::parameterName() const || Linia 457
+
+/**
+ * @brief Zwraca wzór chemiczny parametru
+ * @return Wzór chemiczny parametru
+ */
+QString MainWindow::parameterFormula() const || Linia 462
+
+/**
+ * @brief Zwraca minimalną wartość na wykresie
+ * @return Minimalna wartość
+ */
+double MainWindow::minValue() const || Linia 467
+
+/**
+ * @brief Zwraca maksymalną wartość na wykresie
+ * @return Maksymalna wartość
+ */
+double MainWindow::maxValue() const || Linia 472
+
+/**
+ * @brief Sprawdza czy są dostępne dane dla wykresu
+ * @return Wartość flagi dostępności danych wykresu
+ */
+bool MainWindow::hasChartData() const || Linia 477
+
+/**
+ * @brief Zwraca dane indeksu jakości powietrza
+ * @return Dane indeksu jakości powietrza jako QString
+ */
+QString MainWindow::aqIndexData() const || Linia 483
+
+/**
+ * @brief Sprawdza czy trwa ładowanie indeksu jakości powietrza
+ * @return Wartość flagi ładowania indeksu
+ */
+bool MainWindow::isLoadingAqIndex() const || Linia 488
+
+/**
+ * @brief Sprawdza czy wystąpił błąd podczas ładowania indeksu jakości powietrza
+ * @return Wartość flagi błędu indeksu
+ */
+bool MainWindow::hasAqIndexError() const || Linia 493
+
+/**
+ * @brief Zwraca komunikat o błędzie indeksu jakości powietrza
+ * @return Treść komunikatu o błędzie indeksu
+ */
+QString MainWindow::aqIndexErrorMessage() const || Linia 498
+
+/**
+ * @brief Sprawdza czy używane są dane z pamięci podręcznej
+ * @return Wartość flagi używania danych z cache
+ */
+bool MainWindow::isUsingCachedData() const || Linia 504
+
+/**
+ * @brief Zwraca komunikat o używaniu danych z pamięci podręcznej
+ * @return Treść komunikatu o używaniu danych z cache
+ */
+QString MainWindow::cachedDataMessage() const || Linia 509
+
+### Settery
+
+/**
+ * @brief Ustawia dane odpowiedzi
+ * @param data Dane odpowiedzi
+ */
+void MainWindow::setResponseData(const QString &data) || Linia 516
+
+/**
+ * @brief Ustawia flagę ładowania
+ * @param loading Wartość flagi ładowania
+ */
+void MainWindow::setIsLoading(bool loading) || Linia 524
+
+/**
+ * @brief Ustawia flagę błędu
+ * @param hasError Wartość flagi błędu
+ */
+void MainWindow::setHasError(bool hasError) || Linia 532
+
+/**
+ * @brief Ustawia komunikat o błędzie
+ * @param message Treść komunikatu o błędzie
+ */
+void MainWindow::setErrorMessage(const QString &message) || Linia 540
+
+/**
+ * @brief Ustawia dane stacji
+ * @param data Dane stacji
+ */
+void MainWindow::setStationsData(const QString &data) || Linia 549
+
+/**
+ * @brief Ustawia flagę ładowania stacji
+ * @param loading Wartość flagi ładowania stacji
+ */
+void MainWindow::setIsLoadingStations(bool loading) || Linia 557
+
+/**
+ * @brief Ustawia flagę błędu stacji
+ * @param hasError Wartość flagi błędu stacji
+ */
+void MainWindow::setHasStationsError(bool hasError) || Linia 565
+
+/**
+ * @brief Ustawia komunikat o błędzie stacji
+ * @param message Treść komunikatu o błędzie stacji
+ */
+void MainWindow::setStationsErrorMessage(const QString &message) || Linia 573
+
+/**
+ * @brief Ustawia dane czujników
+ * @param data Dane czujników
+ */
+void MainWindow::setSensorsData(const QString &data) || Linia 582
+
+/**
+ * @brief Ustawia flagę ładowania czujników
+ * @param loading Wartość flagi ładowania czujników
+ */
+void MainWindow::setIsLoadingSensors(bool loading) || Linia 590
+
+/**
+ * @brief Ustawia flagę błędu czujników
+ * @param hasError Wartość flagi błędu czujników
+ */
+void MainWindow::setHasSensorsError(bool hasError) || Linia 598
+
+/**
+ * @brief Ustawia komunikat o błędzie czujników
+ * @param message Treść komunikatu o błędzie czujników
+ */
+void MainWindow::setSensorsErrorMessage(const QString &message) || Linia 606
+
+/**
+ * @brief Ustawia dane wykresu
+ * @param data Lista danych wykresu
+ */
+void MainWindow::setChartData(const QVariantList &data) || Linia 615
+
+/**
+ * @brief Ustawia nazwę parametru
+ * @param name Nazwa parametru
+ */
+void MainWindow::setParameterName(const QString &name) || Linia 623
+
+/**
+ * @brief Ustawia wzór chemiczny parametru
+ * @param formula Wzór chemiczny parametru
+ */
+void MainWindow::setParameterFormula(const QString &formula) || Linia 631
+
+/**
+ * @brief Ustawia minimalną wartość na wykresie
+ * @param value Minimalna wartość
+ */
+void MainWindow::setMinValue(double value) || Linia 639
+
+/**
+ * @brief Ustawia maksymalną wartość na wykresie
+ * @param value Maksymalna wartość
+ */
+void MainWindow::setMaxValue(double value) || Linia 647
+
+/**
+ * @brief Ustawia flagę dostępności danych wykresu
+ * @param hasData Wartość flagi dostępności danych
+ */
+void MainWindow::setHasChartData(bool hasData) || Linia 655
+
+/**
+ * @brief Ustawia dane indeksu jakości powietrza
+ * @param data Dane indeksu jakości powietrza
+ */
+void MainWindow::setAqIndexData(const QString &data) || Linia 664
+
+/**
+ * @brief Ustawia flagę ładowania indeksu jakości powietrza
+ * @param loading Wartość flagi ładowania indeksu
+ */
+void MainWindow::setIsLoadingAqIndex(bool loading) || Linia 672
+
+/**
+ * @brief Ustawia flagę błędu indeksu jakości powietrza
+ * @param hasError Wartość flagi błędu indeksu
+ */
+void MainWindow::setHasAqIndexError(bool hasError) || Linia 680
+
+/**
+ * @brief Ustawia komunikat o błędzie indeksu jakości powietrza
+ * @param message Treść komunikatu o błędzie indeksu
+ */
+void MainWindow::setAqIndexErrorMessage(const QString &message) || Linia 688
+
+/**
+ * @brief Ustawia flagę używania danych z pamięci podręcznej
+ * @param usingCached Wartość flagi używania danych z cache
+ */
+void MainWindow::setIsUsingCachedData(bool usingCached) || Linia 696
+
+/**
+ * @brief Ustawia komunikat o używaniu danych z pamięci podręcznej
+ * @param message Treść komunikatu o używaniu danych z cache
+ */
+void MainWindow::setCachedDataMessage(const QString &message) || Linia 704
+
+### Metody pobierania danych z API
+
+/**
+ * @brief Pobiera dane czujnika z API
+ * @param sensorId ID czujnika
+ */
+void MainWindow::fetchData(const QString &sensorId) || Linia 713
+
+/**
+ * @brief Pobiera listę stacji pomiarowych z API
+ * @param cityName Opcjonalny filtr nazwy miasta
+ */
+void MainWindow::fetchStations(const QString &cityName) || Linia 739
+
+/**
+ * @brief Pobiera czujniki stacji z API
+ * @param stationId ID stacji
+ */
+void MainWindow::fetchStationSensors(const QString &stationId) || Linia 753
+
+/**
+ * @brief Obsługuje odpowiedź sieciową dla danych czujnika
+ * @param reply Odpowiedź sieciowa
+ * @param sensorId ID czujnika
+ */
+void MainWindow::onNetworkReply(QNetworkReply *reply, const QString &sensorId) || Linia 773
+
+/**
+ * @brief Obsługuje odpowiedź sieciową dla danych stacji
+ * @param reply Odpowiedź sieciowa
+ * @param cityFilter Filtr nazwy miasta
+ */
+void MainWindow::onStationsNetworkReply(QNetworkReply *reply, const QString &cityFilter) || Linia 818
+
+/**
+ * @brief Obsługuje odpowiedź sieciową dla danych czujników stacji
+ * @param reply Odpowiedź sieciowa
+ * @param stationId ID stacji
+ */
+void MainWindow::onSensorsNetworkReply(QNetworkReply *reply, const QString &stationId) || Linia 872
+
+/**
+ * @brief Formatuje odpowiedź JSON dla danych czujnika
+ * @param doc Dokument JSON do sformatowania
+ * @return Sformatowany tekst odpowiedzi
+ */
+QString MainWindow::formatJsonResponse(const QJsonDocument &doc) const || Linia 926
+
+/**
+ * @brief Formatuje odpowiedź JSON dla danych stacji
+ * @param doc Dokument JSON do sformatowania
+ * @param cityFilter Opcjonalny filtr nazwy miast
+ * @return Sformatowany tekst odpowiedzi
+ */
+QString MainWindow::formatStationsJsonResponse(const QJsonDocument &doc, const QString &cityFilter) const || Linia 954
+
+/**
+ * @brief Formatuje odpowiedź JSON dla danych czujników
+ * @param doc Dokument JSON do sformatowania
+ * @return Sformatowany tekst odpowiedzi
+ */
+QString MainWindow::formatSensorsJsonResponse(const QJsonDocument &doc) const || Linia 1020
+
+/**
+ * @brief Przetwarza dane do wykresu
+ * @param doc Dokument JSON z danymi do przetworzenia
+ */
+void MainWindow::processChartData(const QJsonDocument &doc) || Linia 1059
+
+/**
+ * @brief Pobiera indeks jakości powietrza z API
+ * @param stationId ID stacji
+ */
+void MainWindow::fetchAqIndex(const QString &stationId) || Linia 1119
+
+/**
+ * @brief Obsługuje odpowiedź sieciową dla indeksu jakości powietrza
+ * @param reply Odpowiedź sieciowa
+ * @param stationId ID stacji
+ */
+void MainWindow::onAqIndexNetworkReply(QNetworkReply *reply, const QString &stationId) || Linia 1139
+
+/**
+ * @brief Formatuje odpowiedź JSON dla indeksu jakości powietrza
+ * @param doc Dokument JSON do sformatowania
+ * @return Sformatowany tekst odpowiedzi
+ */
+QString MainWindow::formatAqIndexJsonResponse(const QJsonDocument &doc) const || Linia 1193
+
+/**
+ * @brief Sprawdza czy połączenie sieciowe jest dostępne
+ * @return Wartość informująca o dostępności sieci
+ */
+bool MainWindow::isNetworkAvailable() const || Linia 1272
+
+### Metody ładowania danych z pamięci podręcznej
+
+/**
+ * @brief Ładuje dane stacji z pamięci podręcznej
+ */
+void MainWindow::loadStationsFromCache() || Linia 1292
+
+/**
+ * @brief Ładuje dane czujników stacji z pamięci podręcznej
+ * @param stationId ID stacji
+ */
+void MainWindow::loadSensorsFromCache(const QString &stationId) || Linia 1304
+
+/**
+ * @brief Ładuje dane czujnika z pamięci podręcznej
+ * @param sensorId ID czujnika
+ */
+void MainWindow::loadSensorDataFromCache(const QString &sensorId) || Linia 1326
+
+/**
+ * @brief Ładuje dane indeksu jakości powietrza z pamięci podręcznej
+ * @param stationId ID stacji
+ */
+void MainWindow::loadAqIndexFromCache(const QString &stationId) || Linia 1347
