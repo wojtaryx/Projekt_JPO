@@ -1,4 +1,4 @@
-# Wymagania dla aplikacji MonitoringPowietrza.exe
+# Wymagania dla aplikacji stacje_pomiarowe.exe
 
 ## Wymagania systemowe
 - System operacyjny: Windows 7 SP1, Windows 8.1 lub Windows 10/11
